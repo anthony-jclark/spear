@@ -26,3 +26,15 @@
 *.exe
 *.out
 *.app
+
+# CMake generated files
+bin/
+build/
+docs/
+
+# OS X trash
+.DS_Store
+
+# Vagrant
+.vagrant/
+
