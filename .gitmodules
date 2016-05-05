@@ -1,0 +1,3 @@
+[submodule "support/Catch"]
+	path = support/Catch
+	url = https://github.com/philsquared/Catch.git
