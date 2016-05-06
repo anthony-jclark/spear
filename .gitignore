@@ -38,3 +38,5 @@ docs/
 # Vagrant
 .vagrant/
 
+# Don't ignore mesh files
+!src/objects/meshes/*.obj

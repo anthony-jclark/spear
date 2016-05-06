@@ -11,7 +11,7 @@
 /// @return     return the updated vector3
 ///
 vector3& vector3::zero() {
-    m_vec[0] = m_vec[1] = m_vec[2] = 0;
+    m_vec = {{0, 0, 0}};
     return *this;
 }
 
@@ -25,9 +25,7 @@ vector3& vector3::zero() {
 /// @return     return the updated vector
 ///
 vector3& vector3::set(scalar x, scalar y, scalar z) {
-    m_vec[0] = x;
-    m_vec[1] = y;
-    m_vec[2] = z;
+    m_vec = {{x, y, z}};
     return *this;
 }
 
@@ -83,24 +81,6 @@ vector3& vector3::operator*=(scalar s) {
 }
 
 //------------------------------------------------------------------------------
-/// @brief      Return the magnitude/length of this vector
-///
-/// @return     the length of this vector
-///
-scalar vector3::len() {
-    return std::sqrt(len2());
-}
-
-//------------------------------------------------------------------------------
-/// @brief      Return the squared magnitude/length of this vector
-///
-/// @return     the squared length of this vector
-///
-scalar vector3::len2() {
-    return dot(*this);
-}
-
-//------------------------------------------------------------------------------
 /// @brief      Normalize this vector
 ///
 /// @return     the updated vector
@@ -111,19 +91,6 @@ vector3& vector3::normalize() {
         scale(1 / std::sqrt(len_squared));
     }
     return *this;
-}
-
-//------------------------------------------------------------------------------
-/// @brief      Return the dot product of this vector with another vector
-///
-/// @param[in]  other  The other vector3
-///
-/// @return     the dot product between two vectors
-///
-scalar vector3::dot(const vector3& other) {
-    return m_vec[0] * other.m_vec[0]
-         + m_vec[1] * other.m_vec[1]
-         + m_vec[2] * other.m_vec[2];
 }
 
 //------------------------------------------------------------------------------
@@ -157,6 +124,37 @@ vector3& vector3::lerp(const vector3& other, scalar alpha) {
     return *this;
 }
 
+//------------------------------------------------------------------------------
+/// @brief      Return the magnitude/length of this vector
+///
+/// @return     the length of this vector
+///
+scalar vector3::len() const {
+    return std::sqrt(len2());
+}
+
+//------------------------------------------------------------------------------
+/// @brief      Return the squared magnitude/length of this vector
+///
+/// @return     the squared length of this vector
+///
+scalar vector3::len2() const {
+    return dot(*this);
+}
+
+//------------------------------------------------------------------------------
+/// @brief      Return the dot product of this vector with another vector
+///
+/// @param[in]  other  The other vector3
+///
+/// @return     the dot product between two vectors
+///
+scalar vector3::dot(const vector3& other) const {
+    return m_vec[0] * other.m_vec[0]
+         + m_vec[1] * other.m_vec[1]
+         + m_vec[2] * other.m_vec[2];
+}
+
 // Insertion operator for the vector3 class
 std::ostream& operator<<(std::ostream& out, const vector3& v) {
     out << "[ "
@@ -175,7 +173,7 @@ bool operator==(const vector3& lhs, const vector3& rhs) {
 bool operator!=(const vector3& lhs, const vector3& rhs) { return !operator==(lhs,rhs); }
 
 // Perform typical algebraic operations on vectors
-vector3 operator+(vector3 lhs, const vector3& rhs) { return lhs += rhs;}
-vector3 operator-(vector3 lhs, const vector3& rhs) { return lhs -= rhs;}
-vector3 operator*(vector3 lhs, scalar rhs) { return lhs *= rhs;}
-vector3 operator*(scalar lhs, vector3 rhs) { return rhs *= lhs;}
+vector3 operator+(vector3 lhs, const vector3& rhs) { return lhs += rhs; }
+vector3 operator-(vector3 lhs, const vector3& rhs) { return lhs -= rhs; }
+vector3 operator*(vector3 lhs, scalar rhs) { return lhs *= rhs; }
+vector3 operator*(scalar lhs, vector3 rhs) { return rhs *= lhs; }

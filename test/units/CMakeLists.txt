@@ -6,7 +6,6 @@ include (CXXFlags)
 file (GLOB_RECURSE test_SRCS *.cpp *.h)
 set (test_BIN ${PROJECT_NAME}-UnitTests)
 add_executable (${test_BIN} ${test_SRCS})
-# set (CMAKE_EXECUTABLE_SUFFIX ".html")
 
 
 

@@ -47,6 +47,9 @@ SCENARIO ( "The vector3 class can be used for linear algebra", "[linalg][vector3
             v_copy_assign = v_orig;
             v_copy_assign.m_vec[2] = b;
 
+            auto v_cloned = v_orig.clone();
+            v_cloned.x() += c;
+
             THEN ( "A new but unique vector3 is constructed" ) {
                 CHECK ( v_orig.m_vec[0] == Approx( a ) );
                 CHECK ( v_orig.m_vec[1] == Approx( b ) );
@@ -59,6 +62,10 @@ SCENARIO ( "The vector3 class can be used for linear algebra", "[linalg][vector3
                 CHECK ( v_copy_assign.m_vec[0] == Approx( a ) );
                 CHECK ( v_copy_assign.m_vec[1] == Approx( b ) );
                 CHECK ( v_copy_assign.m_vec[2] == Approx( b ) );
+
+                CHECK ( v_cloned.m_vec[0] == Approx( a+c ) );
+                CHECK ( v_cloned.m_vec[1] == Approx( b ) );
+                CHECK ( v_cloned.m_vec[2] == Approx( c ) );
             }
         }
     }
@@ -68,7 +75,7 @@ SCENARIO ( "The vector3 class can be used for linear algebra", "[linalg][vector3
         vector3 v2(v1);
         vector3 v3(v1);
 
-        WHEN ( "One of the copies is changed" ) {
+        WHEN ( "One copy is altered" ) {
             v3.m_vec[1] += 1;
 
             THEN ( "The checks for equality and inequality function correctly" ) {

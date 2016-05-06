@@ -6,9 +6,13 @@ Sandbox for playing with Emscripten and WebGL
 
 At least to start, I will be using a 4x4 matrix (matrix4) to describe the transform of each mesh. I think it will make working with OGL easier. It may be worth changing this to a quaternion and position vector later on.
 
+The mesh code that I am porting from JS may need some rethinking.
+
 ## General
 
 It turns out that inline functions is not necessarily the best thing to do when compiling C++ to Javascript. See [outlining](https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html#optimizing-code-outlining) for more information.
+
+I'm not overly thrilled with the clone methodology used in `linalg`, but I will keep it that was as long as I don't find a good reason to change it.
 
 ## Third Party
 
